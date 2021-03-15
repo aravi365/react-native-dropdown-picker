@@ -10,39 +10,15 @@ declare module "react-native-dropdown-picker" {
     TextInputProps,
   } from "react-native";
 
-  export type ItemType = {
-    label: any;
-    value: any;
-    icon?: () => JSX.Element;
-    hidden?: boolean;
-    untouchable?: boolean;
-    parent?: any;
-    disabled?: boolean;
-    selected?: boolean;
-    viewStyle?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
-  };
-
-  export type DropDownPickerInstanceType = {
-    open: () => void;
-    close: () => void;
-    toggle: () => void;
-    reset: () => void;
-    resetItems: (items: ItemType[], defaultValue: any) => void;
-    selectItem: (value: any) => void;
-    addItem: (item: ItemType) => void;
-    addItems: (items: ItemType[]) => void;
-    removeItem: (
-      value: any,
-      params: {
-        changeDefaultValue?: boolean;
-      }
-    ) => void;
-    isOpen: () => boolean;
-  };
-
   export type DropDownPickerProps = {
-    items: ItemType[];
+    items: {
+      label: any;
+      value: any;
+      icon?: () => JSX.Element;
+      hidden?: boolean;
+      disabled?: boolean;
+      selected?: boolean;
+    }[];
     defaultValue?: any;
     placeholder?: string;
     dropDownMaxHeight?: number;
@@ -82,9 +58,7 @@ declare module "react-native-dropdown-picker" {
     scrollViewProps?: ScrollViewProps;
     searchTextInputProps?: TextInputProps;
     containerProps?: ViewProps;
-    globalTextStyle?: StyleProp<TextStyle>;
-    childrenContainerStyle?: StyleProp<ViewStyle>;
-    controller?: (instance: DropDownPickerInstanceType) => void;
+    controller?: (instance: object) => void;
     onOpen?: () => void;
     onClose?: () => void;
     onChangeItem?: (item: any, index: number) => void;
